@@ -54,7 +54,7 @@ if shutil.which("dnf"):
     print(packs + " Pkgs (rpm)")
 
 
-if shutil.which("nix-env" + "nix-store"):
+if shutil.which("nix-env"):
 
     output = subprocess.check_output(["nix-store", "-q", "--requisites", "/run/current-system"])
     output = output.decode()
