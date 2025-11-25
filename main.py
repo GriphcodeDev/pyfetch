@@ -1,9 +1,8 @@
 import os
 import sys
 
-from modules import distro
 from modules import playerctl
-#from modules import os
+from modules import os
 from modules import network
 from modules import ram
 from modules import gpu
