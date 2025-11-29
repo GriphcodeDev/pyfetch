@@ -48,10 +48,10 @@ If you want to modify this program you can simply do so in the modules folder an
 
 ---
 ## 👷‍♂️ To-Do
-- [ ] Ascii logos
+- [x] Ascii logos
 - [ ] All working modules
 - [ ] Install Script
-- [ ] Be able to customize using config.json
+- [x] Be able to customize using config.json
 
 
 ## Contribution

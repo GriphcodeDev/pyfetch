@@ -1,25 +1,55 @@
 import os
 import sys
 
-from modules import playerctl
-# from modules import sys_info
-from modules import network
-from modules import ram
-from modules import gpu
-from modules import cpu
+
+from core.config_loader import loader
+from core.renderer import render
+
+from modules import playerctl, network
 
 
-with open("pyfetch.txt", "r") as logo:
-        print(logo.read())
+def ascii_loader(name, width=50, color=True):
+    base = os.path.dirname(os.path.abspath(__file__))
+    logo_path = os.path.join(base, "logos", f"{name}.png")
+    ascii_path = os.path.join(base, "data", "ascii_logo.txt")
+
+
+    command = f"jp2a -i --width={width} {'--color' if color else ''} '{logo_path}' > '{ascii_path}'"
+
+    os.system(command)
+
+
+    with open(ascii_path, "r") as f:
+        return f.read()
+
 
 def Pyfetch():
-    
-    print("-------------------------------------")
+    config = loader()
 
-    print("Os:", sys.platform)
-    print("Hostname:", network.hostname())
-    print("Ip:", network.ipv4())
-    
-    print("Playerctl:", playerctl.PlayerStatus())
+    logos = ascii_loader(
+        config.get("logo", "nixos"),
+        width=config.get("logo_width", 50),
+        color=config.get("logo_color", True)
+    )
 
-Pyfetch()
+    module_func = {
+        "os": lambda: sys.platform,
+        "hostname": network.hostname,
+        "ipv4": lambda: "".join(network.ipv4()),
+        "playerctl": playerctl.PlayerStatus
+    
+    }
+
+    data = {
+        name: module_func[name]()
+        for name in config.get("modules", [])
+        if name in module_func
+    }
+
+
+    render(logos, data, config)
+
+if __name__ == "__main__":
+    Pyfetch()
+
+
