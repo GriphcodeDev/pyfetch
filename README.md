@@ -42,7 +42,7 @@ If you want to modify this program you can simply do so in the modules folder an
 │   ├── distro.py
 │   ├── gpu.py
 │   ├── network.py
-│   ├── os.py
+│   ├── sys_info.py
 │   ├── playerctl.py
 │   └── ram.py
 ├── pyfetch.txt

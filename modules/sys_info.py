@@ -23,6 +23,14 @@ def system_reader():
     else:
         print(machine)
 
+def distro_info():
+    return distro.name(pretty=True)
+
+def machine_info():
+    return platform.machine()
+
+def kernel_info():
+    return platform.system() +" "+ platform.release()
 
 
 
@@ -121,12 +129,12 @@ PACKAGE_HANDLERS = {
 # -.-.-.-.-.-.-.-.-.-.-.-.-
 
 def main():
-    system_reader()
+    
     
     for binary, handler in PACKAGE_HANDLERS.items():
         if shutil.which(binary):
             result, name = handler()
-            print(f"{result} Pkgs ({name})")
+            return result + " " + "("+name+")"
 
     if __name__ == "__main__":
         main()

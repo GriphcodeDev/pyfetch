@@ -33,19 +33,22 @@ def Pyfetch():
     )
 
     module_func = {
-        "os": lambda: sys.platform,
+        "os": lambda: sys_info.distro_info(),
+        "kernel": lambda: sys_info.kernel_info(),
+        "architecture": lambda: sys_info.machine_info(),
+        "packages": lambda: sys_info.main(),
         "hostname": network.hostname,
         "ipv4": lambda: "".join(network.ipv4()),
         "ipv6": lambda: "".join(network.ipv6()),
         "playerctl": playerctl.PlayerStatus,
-        "sysinfo": sys_info.main(),
-    
+        
     }
 
     data = {
         name: module_func[name]()
         for name in config.get("modules", [])
         if name in module_func
+
     }
 
 

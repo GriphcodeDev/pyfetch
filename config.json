@@ -1,10 +1,10 @@
 {
 
- "logo": "arch",
+ "logo": "linux",
  "logo_width": 50,
  "logo_color": true,
 
 
- "modules": [ "os", "hostname", "ipv4", "playerctl", "sysinfo" ]
+ "modules": [ "os", "architecture", "kernel", "packages", "hostname", "ipv4", "playerctl" ]
 
 }
