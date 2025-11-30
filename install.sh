@@ -71,7 +71,7 @@ esac
 if [ "$DISTRO" != "nixos" ]; then
     echo "Maing command named pyfetch"
     sudo cp pyfetch /usr/local/bin/pfetch
-    sudo chmod +x /use/local/bin/pyfetch
+    sudo chmod +x /usr/local/bin/pyfetch
     echo "pyfetch installed"
 else
     echo "Skipping CLI installation for nixos"
